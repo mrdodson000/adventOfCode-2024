@@ -168,8 +168,10 @@ int main() {
                 }
 
                 linebuffer[flag] = temp;
-                
+
                 failure = 1;
+
+                i = i-1;
 
             }
 
