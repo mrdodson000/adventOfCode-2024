@@ -1,8 +1,17 @@
 #include <stdio.h>
+#include <windows.h>
 
 int rules[1000][1000];
 
 int main() {
+
+    LARGE_INTEGER frequency;
+    LARGE_INTEGER start, end;
+    double time_taken;
+
+    QueryPerformanceFrequency(&frequency);
+
+    QueryPerformanceCounter(&start);
 
     int c, i, j, a, b, flag, flag2, index, temp, failure;
 
@@ -189,7 +198,15 @@ int main() {
 
     }
 
-    printf("%i", index);
+    printf("%i\n", index);
+
+    QueryPerformanceCounter(&end);
+
+    time_taken = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
+
+    time_taken = 1000*time_taken;
+
+    printf("%f ms\n", time_taken);
 
 }
 
