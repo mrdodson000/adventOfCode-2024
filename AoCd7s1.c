@@ -7,17 +7,17 @@ int checker(int array[100], unsigned long long operand, int index){
         return (operand == array[index]);
     }
 
-    // First try multiplication
     if (operand % array[index] == 0) {
         if (checker(array, operand / array[index], index - 1)) {
             return 1;
         }
     }
 
-    // Then try addition
     if (checker(array, operand - array[index], index - 1)) {
         return 1;
     }
+
+    return 0;
 
 }
 

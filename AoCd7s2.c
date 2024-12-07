@@ -1,37 +1,34 @@
 #include <stdio.h>
 #include <math.h>
 
-
 int checker(int array[100], unsigned long long operand, int index){
 
     if (index == 0) {
         return (operand == array[index]);
     }
 
-    // First try multiplication
     if (operand % array[index] == 0) {
         if (checker(array, operand / array[index], index - 1)) {
             return 1;
         }
     }
 
-    //Determine how many digits array[index] has
     int i = 0;
     while ((array[index] % (int)(pow(10,i))) != array[index]){
         i++;
     }
 
-    // Then try concatination
     if ((operand - array[index]) % (int)pow(10,i) == 0){
         if (checker(array, (operand - array[index]) / (int)pow(10,i), index - 1)){
             return 1;
         }
     }
 
-    // Then try addition
     if (checker(array, operand - array[index], index - 1)) {
         return 1;
     }
+
+    return 0;
 
 }
 
@@ -110,8 +107,6 @@ int main(){
                 linebuffer[linebufferIndex] = linebuffer[linebufferIndex] + (numbuffer[i]*(int)pow(10, numbufferIndex - 1 - i));
 
             }
-
-            /*printf("%i\n", linebuffer[linebufferIndex]);*/
 
             int *array = linebuffer;
 
